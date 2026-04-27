@@ -1,0 +1,199 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #6b7280;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  border-color: #9ca3af;
+  color: #1f2937;
+}
+
+.header {
+  position: relative;
+  padding-bottom: 0;
+}
+
+.image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  display: block;
+}
+
+.titleSection {
+  padding: 24px;
+  background: white;
+}
+
+.titleSection h2 {
+  margin: 0 0 4px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.subtitle {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.description {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.population {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.ratings {
+  padding: 0 24px;
+  margin-bottom: 0;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: auto-fit(minmax(150px, 1fr));
+  gap: 12px;
+  padding: 24px;
+  background: white;
+}
+
+.metricCard {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.metricHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.metricName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metricValue {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.metricBar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.metricFill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.ratingForm {
+  padding: 24px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 640px) {
+  .modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .image {
+    height: 200px;
+  }
+
+  .titleSection {
+    padding: 16px;
+  }
+
+  .titleSection h2 {
+    font-size: 22px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .ratingForm {
+    padding: 16px;
+  }
+}
