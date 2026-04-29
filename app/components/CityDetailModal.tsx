@@ -46,7 +46,7 @@ export default function CityDetailModal({ city, onClose }: CityDetailModalProps)
     { name: 'Safety', value: metrics.safety_index, unit: '', max: 100 },
     { name: 'Internet Speed', value: metrics.internet_speed_mbps, unit: 'Mbps', max: 150 },
     { name: 'Visa Ease', value: metrics.visa_ease_index, unit: '', max: 100 },
-    { name: 'Avg Temperature', value: metrics.climate_temp_avg, unit: '°C', max: 30, center: true },
+    { name: 'Avg Temperature', value: metrics.climate_temp_avg, unit: '°C', max: 30 },
     { name: 'LGBTQ+ Friendly', value: metrics.lgbtq_friendly_index, unit: '', max: 100 },
     { name: 'Air Quality', value: metrics.air_quality_index, unit: '', max: 100 },
   ];
@@ -77,15 +77,16 @@ export default function CityDetailModal({ city, onClose }: CityDetailModalProps)
         </button>
 
         <div className={styles.header}>
-          <img
-            src={city.image_url || ''}
-            alt={city.name}
-            className={styles.image}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-            }}
-          />
+          {city.image_url ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={city.image_url}
+              alt={city.name}
+              className={styles.image}
+            />
+          ) : (
+            <div className={styles.imagePlaceholder} aria-label={city.name} />
+          )}
           <div className={styles.titleSection}>
             <h2>{city.name}</h2>
             <p className={styles.subtitle}>{city.country}</p>
