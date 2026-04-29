@@ -1,7 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CityDetailModal from "./components/CityDetailModal";
-import RatingDisplay from "./components/RatingDisplay";
 import RatingForm from "./components/RatingForm";
 import styles from "./page.module.css";
 
@@ -49,7 +48,10 @@ export default function Home() {
           <div key={city.id} className={styles.card} onClick={() => setSelectedCity(city)}>
             <h2>{city.name}</h2>
             <p>{city.region}</p>
-            <RatingDisplay avgRating={city.avgRating} totalRatings={city.totalRatings} />
+            <div style={{ fontSize: "14px", marginTop: "8px" }}>
+              <div>★★★★★ {city.avgRating}/5</div>
+              <div style={{ fontSize: "12px", color: "#666" }}>({city.totalRatings} ratings)</div>
+            </div>
           </div>
         ))}
       </div>
