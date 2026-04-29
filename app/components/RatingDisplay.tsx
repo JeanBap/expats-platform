@@ -27,8 +27,7 @@ export default function RatingDisplay({ cityId, onStatsLoaded }: RatingDisplayPr
 
   const loadRatings = async () => {
     try {
-      // Get aggregate ratings
-      const { data: aggregateData, error: aggError } = await supabase
+      const { data: aggregateData } = await supabase
         .from('city_ratings_aggregate')
         .select('total_ratings, average_rating')
         .eq('city_id', cityId)
@@ -36,7 +35,6 @@ export default function RatingDisplay({ cityId, onStatsLoaded }: RatingDisplayPr
 
       let userRating: number | undefined;
 
-      // Get user's rating if logged in
       if (user) {
         const { data: userRatingData, error: userError } = await supabase
           .from('ratings')
@@ -60,10 +58,7 @@ export default function RatingDisplay({ cityId, onStatsLoaded }: RatingDisplayPr
       onStatsLoaded(newStats);
     } catch (err) {
       console.error('Failed to load ratings:', err);
-      const defaultStats: RatingStats = {
-        totalRatings: 0,
-        averageRating: 0,
-      };
+      const defaultStats: RatingStats = { totalRatings: 0, averageRating: 0 };
       setStats(defaultStats);
       onStatsLoaded(defaultStats);
     } finally {
@@ -84,12 +79,13 @@ export default function RatingDisplay({ cityId, onStatsLoaded }: RatingDisplayPr
   }
 
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
+  const userRating = stats.userRating ?? 0;
 
   return (
     <div className={styles.container}>
       <div className={styles.summary}>
         <div className={styles.rating}>
-          <span className={styles.average}>{stats.averageRating}</span>
+          <span className={styles.average}>{stats.averageRating.toFixed(1)}</span>
           <div className={styles.stars}>
             {stars.map((star) => (
               <span
@@ -103,14 +99,14 @@ export default function RatingDisplay({ cityId, onStatsLoaded }: RatingDisplayPr
           <span className={styles.count}>({stats.totalRatings} ratings)</span>
         </div>
 
-        {stats.userRating && (
+        {userRating > 0 && (
           <div className={styles.userRating}>
             <p>Your rating:</p>
             <div className={styles.userStars}>
-              {Array.from({ length: 5 }, (_, i) => (
+              {stars.map((star) => (
                 <span
-                  key={i + 1}
-                  className={`${styles.star} ${i + 1 <= stats.userRating ? styles.filled : ''}`}
+                  key={star}
+                  className={`${styles.star} ${star <= userRating ? styles.filled : ''}`}
                 >
                   ★
                 </span>

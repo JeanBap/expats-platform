@@ -14,7 +14,7 @@
     "noEmit": true,
     "incremental": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./app/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
