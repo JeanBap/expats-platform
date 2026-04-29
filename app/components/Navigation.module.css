@@ -1,0 +1,98 @@
+.navbar {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.logo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.navLinks {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.userEmail {
+  font-size: 14px;
+  color: #6b7280;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navButton {
+  padding: 8px 16px;
+  background-color: #1f2937;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.navButton:hover {
+  background-color: #111827;
+}
+
+.signOut {
+  background-color: #ef4444;
+}
+
+.signOut:hover {
+  background-color: #dc2626;
+}
+
+@media (max-width: 640px) {
+  .container {
+    height: 60px;
+    padding: 0 15px;
+  }
+
+  .logoText {
+    font-size: 20px;
+  }
+
+  .userEmail {
+    display: none;
+  }
+
+  .navLinks {
+    gap: 10px;
+  }
+}
